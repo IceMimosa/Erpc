@@ -1,0 +1,26 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+.metadata/
+target/
+build/
+.gradle/
+.settings/
+logs/
+*.jar
+!/gradle/wrapper/gradle-wrapper.jar
+*.war
+*~
+*.class
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+dev.properties
+dependency-reduced-pom.xml
+*.rdb
+*.orig

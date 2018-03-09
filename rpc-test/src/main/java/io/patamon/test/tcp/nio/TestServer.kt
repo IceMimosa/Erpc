@@ -28,7 +28,8 @@ object TestServer {
 
         // 3. 反复循环, 等待IO
         while (true) {
-            // 1. 等待某个信道就绪
+            // 1. 等待某个信道就绪, 该方法或阻塞
+            // 可以使用selector.select(timeout) 或者 selector.wakeup()唤醒
             val keys = selector.select()
             if (keys == 0) {
                 // println("等待信道就绪...")
@@ -64,6 +65,9 @@ object TestServer {
                         println("服务端读到数据: $readStr")
                         // 注册写服务
                         client.register(selector, SelectionKey.OP_WRITE)
+                    } else {
+                        // 客户端中断
+                        selectionKey.cancel()
                     }
                 }
                 // > 写事件

@@ -10,7 +10,6 @@ import io.netty.channel.ChannelInitializer
 import io.netty.channel.ChannelOption
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
-import io.netty.handler.codec.string.StringDecoder
 import java.net.InetSocketAddress
 import java.nio.charset.Charset
 
@@ -37,8 +36,9 @@ object TestServer {
                     override fun initChannel(ch: Channel) {
                         val pipeline = ch.pipeline()
                         // 添加pipeline
-                        pipeline.addLast(StringDecoder(Charset.defaultCharset()))
-                        pipeline.addLast(StringDecoder(Charset.defaultCharset()))
+                        // pipeline.addLast(StringDecoder(Charset.defaultCharset()))
+                        // pipeline.addLast(StringDecoder(Charset.defaultCharset()))
+
                         pipeline.addLast(ServerChannelHandler())
                     }
                 })
@@ -64,8 +64,7 @@ class ServerChannelHandler : ChannelInboundHandlerAdapter() {
         println("Server Channel msg: ${buf.readCharSequence(buf.readableBytes(), Charset.defaultCharset())}")
 
         // 写
-        val buffer = Unpooled.buffer(4096)
-        buffer.writeBytes("Hello client...".toByteArray())
+        val buffer = Unpooled.copiedBuffer("Hello client...".toByteArray())
         ctx.writeAndFlush(buffer)
     }
 

@@ -69,8 +69,7 @@ class ClientChannelHandler : ChannelInboundHandlerAdapter() {
         // super.channelActive(ctx)
         println("Client Channel in active...")
 
-        val buffer = Unpooled.buffer(4096)
-        buffer.writeBytes("Hello Server !!!".toByteArray())
+        val buffer = Unpooled.copiedBuffer("Hello Server !!!".toByteArray())
         ctx.writeAndFlush(buffer)
     }
 

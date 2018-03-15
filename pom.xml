@@ -9,7 +9,7 @@
     <version>1.0</version>
     <packaging>pom</packaging>
     <modules>
-        <module>rpc-test</module>
+        <module>rpc-io-test</module>
         <module>rpc-dubbo-provider</module>
         <module>rpc-dubbo-consumer</module>
         <module>rpc-dubbo-provider-api</module>

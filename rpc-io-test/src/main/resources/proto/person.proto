@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_outer_classname = "PersonProto";
+message Person {
+    int64 id = 1;
+    int32 age = 2;
+    string name = 3;
+}
+
+// 可以定义其他复杂的类型
+// ......
+
+
+// 写完.proto文件，使用官方编译的protoc命令进行java代码的生成
+// 如命令: $ protoc --java_out=. person.proto

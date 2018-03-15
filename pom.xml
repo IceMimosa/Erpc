@@ -58,6 +58,16 @@
                 <artifactId>netty-all</artifactId>
                 <version>4.1.22.Final</version>
             </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>3.5.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.esotericsoftware</groupId>
+                <artifactId>kryo</artifactId>
+                <version>4.0.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

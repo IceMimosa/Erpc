@@ -21,6 +21,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <kotlin.version>1.2.30</kotlin.version>
         <dubbo.version>2.6.0</dubbo.version>
+        <netty.version>4.1.22.Final</netty.version>
+        <protobuf.version>3.5.1</protobuf.version>
+        <protostuff.version>1.5.9</protostuff.version>
+        <kryo.version>4.0.1</kryo.version>
+        <fastjson.version>1.2.23</fastjson.version>
     </properties>
 
     <dependencies>
@@ -57,17 +62,32 @@
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
-                <version>4.1.22.Final</version>
+                <version>${netty.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
-                <version>3.5.1</version>
+                <version>${protobuf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.protostuff</groupId>
+                <artifactId>protostuff-core</artifactId>
+                <version>${protostuff.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.protostuff</groupId>
+                <artifactId>protostuff-runtime</artifactId>
+                <version>${protostuff.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.esotericsoftware</groupId>
                 <artifactId>kryo</artifactId>
-                <version>4.0.1</version>
+                <version>${kryo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

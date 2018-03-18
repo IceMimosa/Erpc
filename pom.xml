@@ -13,6 +13,7 @@
         <module>rpc-dubbo-provider</module>
         <module>rpc-dubbo-consumer</module>
         <module>rpc-dubbo-provider-api</module>
+        <module>erpc-serialization</module>
     </modules>
 
     <properties>

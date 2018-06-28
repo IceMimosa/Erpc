@@ -13,7 +13,7 @@ interface Registry {
      * 向注册中心注册服务
      *
      * [ServiceName]:   服务接口的全名名称
-     * [registAddress]: 服务提供者的地址
+     * [ServerAddress]: 服务提供者的地址
      */
     fun regist(ServiceName: String, ServerAddress: String): Boolean
 

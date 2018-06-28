@@ -14,7 +14,7 @@ import java.io.ByteArrayOutputStream
  * Created by IceMimosa
  * Date: 2018/3/19
  */
-class kryoSerializer : Serializer {
+class KryoSerializer : Serializer {
     /**
      * 将对象序列化成字节数组
      */

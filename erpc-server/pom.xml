@@ -16,5 +16,13 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.patamon.test</groupId>
+            <artifactId>erpc-serialization</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.patamon.test</groupId>
+            <artifactId>erpc-common</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package io.patamon.erpc.server.utils
+package io.patamon.erpc.common.utils
 
 import java.net.InetAddress
 import java.util.*

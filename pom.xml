@@ -118,6 +118,22 @@
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.patamon.test</groupId>
+                <artifactId>erpc-common</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.patamon.test</groupId>
+                <artifactId>erpc-registry</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.patamon.test</groupId>
+                <artifactId>erpc-serialization</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

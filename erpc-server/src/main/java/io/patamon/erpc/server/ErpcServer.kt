@@ -12,6 +12,10 @@ interface ErpcServer {
     /**
      * 运行 server
      */
-    fun run()
+    fun run(hostname: String, port: Int)
 
+    /**
+     * 注册服务实例
+     */
+    fun publish(bean: Any)
 }

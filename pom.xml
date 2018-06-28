@@ -14,18 +14,23 @@
         <module>rpc-dubbo-consumer</module>
         <module>rpc-dubbo-provider-api</module>
         <module>erpc-serialization</module>
+        <module>erpc-registry</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <kotlin.version>1.2.30</kotlin.version>
+        <kotlin.version>1.2.50</kotlin.version>
         <dubbo.version>2.6.0</dubbo.version>
         <netty.version>4.1.22.Final</netty.version>
+        <!-- 序列化相关依赖 -->
         <protobuf.version>3.5.1</protobuf.version>
         <protostuff.version>1.5.9</protostuff.version>
         <kryo.version>4.0.1</kryo.version>
         <fastjson.version>1.2.23</fastjson.version>
+        <!-- 注册与发现服务相关实现 -->
+        <zookeeper.version>3.4.9</zookeeper.version>
+        <jedis.version>2.9.0</jedis.version>
     </properties>
 
     <dependencies>
@@ -33,6 +38,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test-junit</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -88,6 +99,17 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

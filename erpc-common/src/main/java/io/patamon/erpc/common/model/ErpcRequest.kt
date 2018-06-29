@@ -11,12 +11,14 @@ import java.util.*
  * Date: 2018/6/28
  */
 data class ErpcRequest(
-        val className: String,              // 请求服务类的全名
-        val methodName: String,             // 请求执行的方法名
-        val parameterTypes: Array<Class<*>>,// 请求参数类型
-        val params: Array<*>,               // 请求参数
+        val className: String?,              // 请求服务类的全名
+        val methodName: String?,             // 请求执行的方法名
+        val parameterTypes: Array<Class<*>>?,// 请求参数类型
+        val params: Array<*>?,               // 请求参数
         val requestId: Long = 1             // 请求追踪ID
 ) : Serializable {
+
+    constructor(): this(null, null, null, null)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -34,11 +36,13 @@ data class ErpcRequest(
     }
 
     override fun hashCode(): Int {
-        var result = className.hashCode()
-        result = 31 * result + methodName.hashCode()
-        result = 31 * result + Arrays.hashCode(parameterTypes)
-        result = 31 * result + Arrays.hashCode(params)
+        var result = className?.hashCode() ?: 0
+        result = 31 * result + (methodName?.hashCode() ?: 0)
+        result = 31 * result + (parameterTypes?.let { Arrays.hashCode(it) } ?: 0)
+        result = 31 * result + (params?.let { Arrays.hashCode(it) } ?: 0)
         result = 31 * result + requestId.hashCode()
         return result
     }
+
+
 }

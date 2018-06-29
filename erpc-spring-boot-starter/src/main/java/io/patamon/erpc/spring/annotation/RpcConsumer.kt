@@ -7,7 +7,7 @@ package io.patamon.erpc.spring.annotation
  * Created by IceMimosa
  * Date: 2018/6/29
  */
-@Target(AnnotationTarget.TYPE)
+@Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented
 annotation class RpcConsumer {

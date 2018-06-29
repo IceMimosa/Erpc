@@ -30,8 +30,9 @@ class ErpcDecoder(
             throw RuntimeException("Insufficient bytes to be read, expected: $length")
         }
         // 2. 读取数据, 并反序列化返回
-        val bytes = byteBuf.readBytes(length)
-        val obj = serializer.deserialize(bytes.array(), clazz)
+        val bytes = ByteArray(length)
+        byteBuf.readBytes(bytes)
+        val obj = serializer.deserialize(bytes, clazz)
         out.add(obj)
     }
 

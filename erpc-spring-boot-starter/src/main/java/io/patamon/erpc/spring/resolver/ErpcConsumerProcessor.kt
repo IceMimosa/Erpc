@@ -41,6 +41,7 @@ class ErpcConsumerProcessor : BeanPostProcessor, ApplicationContextAware {
                     applicationContext.getBean(serviceClass)
                 } catch (e: Exception) {
                     // ignore
+                    null
                 }
                 // 否则代理获取
                 if (obj == null) {

@@ -3,6 +3,7 @@ package io.patamon.erpc.server.netty
 import io.netty.channel.ChannelFutureListener
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler
+import io.patamon.erpc.common.model.ErpcException
 import io.patamon.erpc.common.model.ErpcRequest
 import io.patamon.erpc.common.model.ErpcResponse
 import org.slf4j.LoggerFactory
@@ -38,12 +39,13 @@ class NettyServerHandler(
         try {
             val bean = handlers[request.className]
                     ?: throw RuntimeException("Do not have instance for class ${request.className}")
-            val method = bean.javaClass.getMethod(request.methodName, *request.parameterTypes)
+            val method = bean.javaClass.getMethod(request.methodName, *request.parameterTypes!!)
                     ?: throw RuntimeException("Do not have method for class ${request.className}, method name is ${request.methodName}")
-            val result = method.invoke(bean, request.params)
+            val result = method.invoke(bean, *request.params!!)
             response.result = result
         } catch (e: Exception) {
-            response.error = e
+            log.error("Error handle request, request is $request, error is ${e.stackTrace}")
+            response.error = ErpcException(e.message)
         }
         return response
     }

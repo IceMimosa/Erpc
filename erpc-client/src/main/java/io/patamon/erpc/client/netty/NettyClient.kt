@@ -40,7 +40,7 @@ class NettyClient : ErpcClient {
      */
     override fun call(request: ErpcRequest): ErpcResponse {
         // 1. 发现服务
-        val address = registry.discover(request.className)
+        val address = registry.discover(request.className!!)
         val ( host, port ) = address.split(":")
 
         // 2. 创建客户端请求

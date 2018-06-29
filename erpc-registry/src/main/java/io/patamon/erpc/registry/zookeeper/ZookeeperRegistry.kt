@@ -50,10 +50,10 @@ class ZookeeperRegistry(
             return false
         }
         var pathLine = StringBuilder()
-        path.split("/").filter { it.isBlank() }.forEach {
+        path.split("/").filter { it.isNotBlank() }.forEach {
             pathLine = pathLine.append("/$it")
             if (!zkClient.exists(pathLine.toString())) {
-                zkClient.createEphemeral(pathLine.toString())
+                zkClient.createPersistent(pathLine.toString())
             }
         }
         return true

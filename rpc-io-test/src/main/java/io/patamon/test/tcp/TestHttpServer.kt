@@ -5,7 +5,7 @@ import java.net.InetSocketAddress
 
 /**
  * Desc: http server demo
- * Mail: chk@terminus.io
+ * Mail: chk19940609@gmail.com
  * Created by IceMimosa
  * Date: 2017/3/19
  */
@@ -13,7 +13,7 @@ object TestHttpServer {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        // 100: 接收的情歌数
+        // 100: 接收的请求数
         val server = HttpServer.create(InetSocketAddress("127.0.0.1", 18888), 100)
         // 创建context的路径
         server.createContext("/", { exchange ->

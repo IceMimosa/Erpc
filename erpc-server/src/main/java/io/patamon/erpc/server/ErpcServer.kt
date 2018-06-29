@@ -17,5 +17,5 @@ interface ErpcServer {
     /**
      * 注册服务实例
      */
-    fun publish(bean: Any)
+    fun publish(name: String, bean: Any)
 }

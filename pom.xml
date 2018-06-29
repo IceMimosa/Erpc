@@ -19,9 +19,14 @@
         <module>erpc-common</module>
         <module>erpc-client</module>
         <module>erpc-codec</module>
+        <module>erpc-test-provider-api</module>
+        <module>erpc-test-provider</module>
+        <module>erpc-test-consumer</module>
+        <module>erpc-spring-boot-starter</module>
     </modules>
 
     <properties>
+        <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <kotlin.version>1.2.50</kotlin.version>
@@ -144,6 +149,26 @@
             <dependency>
                 <groupId>io.patamon.test</groupId>
                 <artifactId>erpc-client</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.patamon.test</groupId>
+                <artifactId>erpc-server</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.patamon.test</groupId>
+                <artifactId>erpc-test-provider-api</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.patamon.test</groupId>
+                <artifactId>erpc-test-provider</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.patamon.test</groupId>
+                <artifactId>erpc-test-consumer</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
         </dependencies>

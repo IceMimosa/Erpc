@@ -82,9 +82,9 @@ class NettyServer(
     /**
      * 注册服务实例
      */
-    override fun publish(bean: Any) {
-        handlers[bean.javaClass.name] = bean
+    override fun publish(name: String, bean: Any) {
+        handlers[name] = bean
         // 注册服务
-        registry.regist(bean.javaClass.name, "$hostname:$port")
+        registry.regist(name, "$hostname:$port")
     }
 }

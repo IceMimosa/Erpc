@@ -1,4 +1,4 @@
-package io.patamon.erpc.server.netty
+package io.patamon.erpc.codec
 
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext

@@ -12,7 +12,7 @@ interface ErpcServer {
     /**
      * 运行 server
      */
-    fun run(hostname: String, port: Int)
+    fun run()
 
     /**
      * 注册服务实例

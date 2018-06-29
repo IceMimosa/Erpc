@@ -6,7 +6,10 @@ import io.netty.channel.ChannelInitializer
 import io.netty.channel.ChannelOption
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
+import io.patamon.erpc.codec.ErpcDecoder
+import io.patamon.erpc.codec.ErpcEncoder
 import io.patamon.erpc.common.model.ErpcRequest
+import io.patamon.erpc.registry.RegistryFactory
 import io.patamon.erpc.serialization.SerializerFactory
 import io.patamon.erpc.server.ErpcServer
 import org.slf4j.LoggerFactory
@@ -19,7 +22,10 @@ import java.net.InetSocketAddress
  * Created by IceMimosa
  * Date: 2018/6/28
  */
-class NettyServer : ErpcServer {
+class NettyServer(
+        private val hostname: String,
+        private val port: Int
+) : ErpcServer {
 
     val log = LoggerFactory.getLogger(this.javaClass)
 
@@ -29,6 +35,11 @@ class NettyServer : ErpcServer {
     private val serializer = SerializerFactory.load()
 
     /**
+     * 服务注册
+     */
+    private val registry = RegistryFactory.load()
+
+    /**
      * 服务实例
      */
     private val handlers = mutableMapOf<String, Any?>()
@@ -36,7 +47,7 @@ class NettyServer : ErpcServer {
     /**
      * 运行 server
      */
-    override fun run(hostname: String, port: Int) {
+    override fun run() {
         val bossGroup = NioEventLoopGroup()
         val workGroup = NioEventLoopGroup()
         try {
@@ -73,5 +84,7 @@ class NettyServer : ErpcServer {
      */
     override fun publish(bean: Any) {
         handlers[bean.javaClass.name] = bean
+        // 注册服务
+        registry.regist(bean.javaClass.name, "$hostname:$port")
     }
 }

@@ -12,9 +12,9 @@ import java.io.Serializable
 data class ErpcResponse(
         var result: Any?,        // 返回的结果
         var error: Throwable?,   // 异常
-        val requestId: Long = 1  // 请求追踪ID
+        var requestId: Long = 1  // 请求追踪ID
 ) : Serializable {
 
-    constructor(requestId: Long): this(null, null, requestId)
+    constructor(requestId: Long = 1): this(null, null, requestId)
 
 }

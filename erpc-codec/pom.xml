@@ -9,28 +9,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>erpc-server</artifactId>
+    <artifactId>erpc-codec</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-        </dependency>
         <dependency>
             <groupId>io.patamon.test</groupId>
             <artifactId>erpc-common</artifactId>
         </dependency>
         <dependency>
             <groupId>io.patamon.test</groupId>
-            <artifactId>erpc-registry</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.patamon.test</groupId>
             <artifactId>erpc-serialization</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.patamon.test</groupId>
-            <artifactId>erpc-codec</artifactId>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
         </dependency>
     </dependencies>
+
 </project>

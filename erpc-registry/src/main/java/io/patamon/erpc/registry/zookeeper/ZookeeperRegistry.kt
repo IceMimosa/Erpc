@@ -23,22 +23,22 @@ class ZookeeperRegistry(
     /**
      * 向注册中心注册服务
      *
-     * [ServiceName]:   服务接口的全名名称
-     * [ServerAddress]: 服务提供者的地址
+     * [serviceName]:   服务接口的全名名称
+     * [serverAddress]: 服务提供者的地址
      */
-    override fun regist(ServiceName: String, ServerAddress: String): Boolean {
-        return create("/$ROOT/$ServiceName/$ServerAddress")
+    override fun regist(serviceName: String, serverAddress: String): Boolean {
+        return create("/$ROOT/$serviceName/$serverAddress")
     }
 
     /**
      * 服务发现, 返回服务提供者的地址
      */
-    override fun discover(ServiceName: String): String {
-        val paths = zkClient.getChildren("/$ROOT/$ServiceName")
+    override fun discover(serviceName: String): String {
+        val paths = zkClient.getChildren("/$ROOT/$serviceName")
         if (paths.isEmpty()) {
             throw RuntimeException("No regist server found !!!")
         }
-        // TODO, 默认返回第一个, 需要负载均衡
+        // TODO, 默认返回第一个, 需要做负载均衡
         return paths[0]
     }
 

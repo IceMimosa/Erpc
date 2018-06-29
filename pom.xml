@@ -17,6 +17,8 @@
         <module>erpc-registry</module>
         <module>erpc-server</module>
         <module>erpc-common</module>
+        <module>erpc-client</module>
+        <module>erpc-codec</module>
     </modules>
 
     <properties>
@@ -132,6 +134,16 @@
             <dependency>
                 <groupId>io.patamon.test</groupId>
                 <artifactId>erpc-serialization</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.patamon.test</groupId>
+                <artifactId>erpc-codec</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.patamon.test</groupId>
+                <artifactId>erpc-client</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
         </dependencies>

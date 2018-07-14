@@ -16,7 +16,7 @@ object TestHttpServer {
         // 100: 接收的请求数
         val server = HttpServer.create(InetSocketAddress("127.0.0.1", 18888), 100)
         // 创建context的路径
-        server.createContext("/", { exchange ->
+        server.createContext("/") { exchange ->
             println(exchange.requestMethod)
             println(exchange.protocol)
             println(exchange.requestURI)
@@ -30,7 +30,7 @@ object TestHttpServer {
             val out = exchange.responseBody
             out.write(res.toByteArray())
             out.close()
-        })
+        }
         server.start()
     }
 }

@@ -21,4 +21,9 @@ interface Registry {
      * 服务发现, 返回服务提供者的地址
      */
     fun discover(serviceName: String): String
+
+    /**
+     * 关闭服务注册对象
+     */
+    fun close()
 }

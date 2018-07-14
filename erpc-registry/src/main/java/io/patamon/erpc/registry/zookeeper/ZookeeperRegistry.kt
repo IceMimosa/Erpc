@@ -27,7 +27,10 @@ class ZookeeperRegistry(
      * [serverAddress]: 服务提供者的地址
      */
     override fun regist(serviceName: String, serverAddress: String): Boolean {
-        return create("/$ROOT/$serviceName/$serverAddress")
+        // 创建服务根节点
+        create("/$ROOT/$serviceName")
+        // 创建主机节点
+        return create("/$ROOT/$serviceName/$serverAddress", false)
     }
 
     /**
@@ -43,9 +46,16 @@ class ZookeeperRegistry(
     }
 
     /**
+     * 关闭服务注册对象
+     */
+    override fun close() {
+        zkClient.close()
+    }
+
+    /**
      * 递归创建 zk path
      */
-    private fun create(path: String): Boolean {
+    private fun create(path: String, persist: Boolean = true): Boolean {
         if (path.isBlank()) {
             return false
         }
@@ -53,7 +63,11 @@ class ZookeeperRegistry(
         path.split("/").filter { it.isNotBlank() }.forEach {
             pathLine = pathLine.append("/$it")
             if (!zkClient.exists(pathLine.toString())) {
-                zkClient.createPersistent(pathLine.toString())
+                if (persist) {
+                    zkClient.createPersistent(pathLine.toString())
+                } else {
+                    zkClient.createEphemeral(pathLine.toString())
+                }
             }
         }
         return true

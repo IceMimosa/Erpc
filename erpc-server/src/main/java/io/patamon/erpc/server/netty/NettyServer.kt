@@ -87,4 +87,11 @@ class NettyServer(
         // 注册服务
         registry.regist(name, "$hostname:$port")
     }
+
+    /**
+     * 关闭服务
+     */
+    override fun close() {
+        registry.close()
+    }
 }

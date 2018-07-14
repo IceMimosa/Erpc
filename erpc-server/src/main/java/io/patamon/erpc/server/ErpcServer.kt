@@ -18,4 +18,9 @@ interface ErpcServer {
      * 注册服务实例
      */
     fun publish(name: String, bean: Any)
+
+    /**
+     * 关闭服务
+     */
+    fun close()
 }

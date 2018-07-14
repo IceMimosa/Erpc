@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContextAware
 import org.springframework.context.annotation.Primary
 import org.springframework.util.SocketUtils
 import javax.annotation.PostConstruct
+import javax.annotation.PreDestroy
 
 /**
  * Desc: rpc provider 注解处理
@@ -24,13 +25,19 @@ class ErpcProviderProcessor : ApplicationContextAware {
      */
     private lateinit var applicationContext: ApplicationContext
 
+    /**
+     * erpc netty 服务
+     */
+    private lateinit var server: NettyServer
+
     override fun setApplicationContext(applicationContext: ApplicationContext) {
         this.applicationContext = applicationContext
+        Runtime.getRuntime().addShutdownHook(Thread { destroy() })
     }
 
     @PostConstruct
     fun publishService() {
-        val server = NettyServer("localhost", SocketUtils.findAvailableTcpPort())
+        server = NettyServer("localhost", SocketUtils.findAvailableTcpPort())
 
         // 1. 找出所有的 provider
         applicationContext.getBeansWithAnnotation(RpcProvider::class.java).forEach { name, bean ->
@@ -74,5 +81,10 @@ class ErpcProviderProcessor : ApplicationContextAware {
         }
         throw IllegalArgumentException("""multiple bean of type("$interfaceType") has been annotated with @RpcProvider,
             |and no one annotated with @Primary""".trimMargin())
+    }
+
+    @PreDestroy
+    fun destroy() {
+        server.close()
     }
 }

@@ -21,8 +21,7 @@ object ErpcProxy {
      * 创建接口代理
      */
     fun <T> createProxyBean(proxyClass: Class<T>): T {
-        return Proxy.newProxyInstance(Thread.currentThread().contextClassLoader, arrayOf(proxyClass), { proxy, method, args ->
-            var result: Any
+        return Proxy.newProxyInstance(Thread.currentThread().contextClassLoader, arrayOf(proxyClass)) { proxy, method, args ->
             // 1. 处理一些特殊的方法, 如 toString() 等等
             if ("toString" == method.name) {
                 return@newProxyInstance method.invoke(proxy, args)
@@ -34,7 +33,7 @@ object ErpcProxy {
             // > 处理error, ......
 
             return@newProxyInstance response.result
-        }) as T
+        } as T
     }
 
 }

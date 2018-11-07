@@ -32,7 +32,7 @@ class ErpcConsumerProcessor : BeanPostProcessor, ApplicationContextAware {
      */
     override fun postProcessBeforeInitialization(bean: Any, beanName: String): Any {
         val clazz = if (AopUtils.isAopProxy(beanName)) AopUtils.getTargetClass(bean) else bean.javaClass
-        ReflectionUtils.doWithFields(clazz, { field ->
+        ReflectionUtils.doWithFields(clazz) { field ->
             val rpcConsumer = field.getAnnotation(RpcConsumer::class.java)
             if (rpcConsumer != null) {
                 val serviceClass = field.type
@@ -55,7 +55,7 @@ class ErpcConsumerProcessor : BeanPostProcessor, ApplicationContextAware {
                     throw BeanCreationException(beanName, e)
                 }
             }
-        })
+        }
         return bean
     }
 

@@ -40,7 +40,7 @@ class ErpcProviderProcessor : ApplicationContextAware {
         server = NettyServer("localhost", SocketUtils.findAvailableTcpPort())
 
         // 1. 找出所有的 provider
-        applicationContext.getBeansWithAnnotation(RpcProvider::class.java).forEach { name, bean ->
+        applicationContext.getBeansWithAnnotation(RpcProvider::class.java).forEach { _, bean ->
             // val rpcProvider = applicationContext.findAnnotationOnBean(name, RpcProvider::class.java)
             val interfaceTypes = realTargetClass(bean).interfaces
             if (interfaceTypes.isEmpty()) {

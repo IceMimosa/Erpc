@@ -56,7 +56,9 @@ class ErpcProviderProcessor : ApplicationContextAware {
             server.publish(interfaceTypes[0].name, actualbean)
         }
         // 2. 启动服务
-        server.run()
+        val t = Thread { server.run() }
+        t.isDaemon = true
+        t.start()
     }
 
     /**
